@@ -1,13 +1,13 @@
 const pool = require('../db');
 
-// Criar tarefa
+// Create task
 exports.createTask = async (req, res) => {
   const { title } = req.body;
 
   try {
     const result = await pool.query(
-      'INSERT INTO tasks (title, user_id) VALUES ($1, $2) RETURNING *',
-      [title, req.userId]
+      'INSERT INTO tasks (title, description, user_id) VALUES ($1, $2, $3) RETURNING *',
+      [title, description, req.userId]
     );
 
     res.status(201).json(result.rows[0]);
@@ -16,7 +16,7 @@ exports.createTask = async (req, res) => {
   }
 };
 
-// Listar tarefas do usuário
+// List user tasks
 exports.getTasks = async (req, res) => {
   try {
     const result = await pool.query(
@@ -37,8 +37,8 @@ exports.updateTask = async (req, res) => {
   try {
     const result = await pool.query(
       `UPDATE tasks 
-       SET title = $1, completed = $2 
-       WHERE id = $3 AND user_id = $4 
+       SET title = $1, completed = $2
+       WHERE id = $3 AND user_id = $4
        RETURNING *`,
       [title, completed, id, req.userId]
     );

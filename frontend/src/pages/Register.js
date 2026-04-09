@@ -17,21 +17,21 @@ function Register({ setIsAuth, setIsLogin }) {
     const data = await register(email, password);
 
     if (data.id) {
-      setSuccess('Conta criada! Redirecionando para login...');
+      setSuccess('Account created! Redirecting to login...');
       setTimeout(() => {
         setIsLogin(true);
         setEmail('');
         setPassword('');
       }, 1500);
     } else {
-      setError(data.error || 'Erro ao registrar');
+      setError(data.error || 'Registration error');
     }
     setLoading(false);
   };
 
   return (
     <div>
-      <h2>Cadastro</h2>
+      <h2>Register</h2>
 
       {error && <p style={{ color: '#f5576c', marginBottom: '15px', textAlign: 'center' }}>⚠ {error}</p>}
       {success && <p style={{ color: '#667eea', marginBottom: '15px', textAlign: 'center' }}>{success}</p>}
@@ -48,7 +48,7 @@ function Register({ setIsAuth, setIsLogin }) {
 
         <input
           type="password"
-          placeholder="Senha"
+          placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
@@ -56,7 +56,7 @@ function Register({ setIsAuth, setIsLogin }) {
         />
 
         <button type="submit" disabled={loading}>
-          {loading ? 'Criando conta...' : 'Cadastrar'}
+          {loading ? 'Creating account...' : 'Register'}
         </button>
       </form>
     </div>

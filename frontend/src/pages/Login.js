@@ -18,7 +18,7 @@ function Login({ setIsAuth }) {
       localStorage.setItem('token', data.token);
       setIsAuth(true);
     } else {
-      setError(data.error || 'Erro ao fazer login');
+      setError(data.error || 'Login error');
     }
     setLoading(false);
   };
@@ -41,7 +41,7 @@ function Login({ setIsAuth }) {
 
         <input
           type="password"
-          placeholder="Senha"
+          placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
@@ -49,7 +49,7 @@ function Login({ setIsAuth }) {
         />
 
         <button type="submit" disabled={loading}>
-          {loading ? 'Entrando...' : 'Entrar'}
+          {loading ? 'Logging in...' : 'Login'}
         </button>
       </form>
     </div>

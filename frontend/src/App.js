@@ -24,7 +24,7 @@ function App() {
         )}
       </div>
       <button className="auth-toggle-btn" onClick={() => setIsLogin(!isLogin)}>
-        {isLogin ? 'Não tem conta? Registre-se' : 'Já tem conta? Faça login'}
+        {isLogin ? "Don't have an account? Register" : 'Already have an account? Login'}
       </button>
     </div>
   );

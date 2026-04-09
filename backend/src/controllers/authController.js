@@ -24,7 +24,7 @@ exports.login = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    // 1. Buscar usuário
+    // 1. Find user
     const result = await pool.query(
       'SELECT * FROM users WHERE email = $1',
       [email]
@@ -36,21 +36,21 @@ exports.login = async (req, res) => {
       return res.status(400).json({ error: 'User not found' });
     }
 
-    // 2. Comparar senha
+    // 2. Compare password
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
       return res.status(400).json({ error: 'Invalid credentials' });
     }
 
-    // 3. Gerar token
+    // 3. Generate token
     const token = jwt.sign(
       { id: user.id },
       process.env.JWT_SECRET,
       { expiresIn: '1d' }
     );
 
-    // 4. Retornar token
+    // 4. Return token
     res.json({ token });
 
   } catch (err) {
