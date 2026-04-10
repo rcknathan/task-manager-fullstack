@@ -13,10 +13,4 @@ app.use('/auth', authRoutes);
 app.use('/test', testRoutes);
 app.use('/tasks', taskRoutes);
 
-app.use(cors({
-  origin: 'https://task-manager-fullstack-taupe.vercel.app',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
-
 module.exports = app;
