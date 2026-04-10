@@ -6,8 +6,8 @@ exports.createTask = async (req, res) => {
 
   try {
     const result = await pool.query(
-      'INSERT INTO tasks (title, description, user_id) VALUES ($1, $2, $3) RETURNING *',
-      [title, description, req.userId]
+      'INSERT INTO tasks (title, user_id) VALUES ($1, $2) RETURNING *',
+      [title, req.userId]
     );
 
     res.status(201).json(result.rows[0]);
