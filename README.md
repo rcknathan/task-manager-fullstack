@@ -1,49 +1,171 @@
-# 🚀 Task Manager Full-Stack
+<h1 align="center">🧠 Task Manager Fullstack</h1>
 
-Full-stack task management application with authentication, user isolation, and complete CRUD operations.
+<p align="center">
+  A complete task management system with JWT authentication, built with Node.js backend and React frontend.
+</p>
 
-## 🔥 Features
+<p align="center">
+  <a href="https://task-manager-fullstack-taupe.vercel.app" target="_blank">
+    🔗 Access application
+  </a>
+</p>
 
-* User authentication (JWT)
-* Protected routes
-* Full CRUD for tasks
-* User-specific data isolation
-* RESTful API architecture
+---
 
-## 🛠 Tech Stack
+## 🧩 About the Project
 
-**Backend**
+This is a complete fullstack project that allows:
+
+* ✅ Create a user account
+* 🔐 Authenticate using JWT
+* 📝 Create tasks
+* 📋 List tasks
+* ✏️ Edit tasks
+* ❌ Delete tasks
+
+Each user has their own tasks (isolated through authentication).
+
+---
+
+## ⚙️ Technologies Used
+
+### 🔙 Backend
 
 * Node.js
 * Express
-* PostgreSQL
-* JWT Authentication
+* PostgreSQL (Supabase)
+* JWT (Authentication)
+* bcrypt (Password hashing)
 
-**Frontend**
+### 🔜 Frontend
 
 * React
-* Fetch API
-* LocalStorage (Auth persistence)
+* Axios
+* LocalStorage (login persistence)
 
-## 📌 API Endpoints
+### ☁️ Deploy
 
-### Auth
+* Backend: Render
+* Frontend: Vercel
+* Database: Supabase
 
-* `POST /auth/register`
-* `POST /auth/login`
-
-### Tasks (Protected)
-
-* `GET /tasks`
-* `POST /tasks`
-* `PUT /tasks/:id`
-* `DELETE /tasks/:id`
+---
 
 ## 🔐 Authentication
 
-All task routes require a Bearer Token (JWT).
+The system uses **JWT (JSON Web Token)**:
 
-## 💻 Running Locally
+1. User logs in
+2. Receives a token
+3. Token is stored in `localStorage`
+4. Sent automatically in protected requests
+
+Example header:
+
+```
+Authorization: Bearer YOUR_TOKEN_HERE
+```
+
+---
+
+## 🗄️ Database Structure
+
+### `users` table
+
+```sql
+id SERIAL PRIMARY KEY
+email TEXT UNIQUE NOT NULL
+password TEXT NOT NULL
+```
+
+### `tasks` table
+
+```sql
+id SERIAL PRIMARY KEY
+title TEXT NOT NULL
+description TEXT
+completed BOOLEAN DEFAULT false
+user_id INTEGER REFERENCES users(id)
+```
+
+---
+
+## 🔄 CRUD Features
+
+| Method | Route      | Description |
+| ------ | ---------- | ----------- |
+| POST   | /tasks     | Create task |
+| GET    | /tasks     | List tasks  |
+| PUT    | /tasks/:id | Update task |
+| DELETE | /tasks/:id | Delete task |
+
+---
+
+## 🌐 Deployment and Important Notes
+
+### 🔴 Backend (Render)
+
+The backend is hosted on **Render (free plan)**.
+
+⚠️ **IMPORTANT:**
+
+* The server may "sleep" after a few minutes of inactivity
+* The first request may take ~30 seconds
+
+💡 This is normal in free environments
+
+---
+
+### 🟢 Frontend (Vercel)
+
+👉 https://task-manager-fullstack-taupe.vercel.app
+
+* Automatic deploy via GitHub
+* Optimized build
+* Global CDN
+
+---
+
+### 🟣 Database (Supabase)
+
+* Managed PostgreSQL
+* Real data persistence
+
+---
+
+## 📁 Project Structure
+
+```
+task-manager-fullstack/
+│
+├── backend/
+│   ├── controllers/
+│   ├── routes/
+│   ├── middlewares/
+│   ├── db.js
+│   └── server.js
+│
+├── frontend/
+│   ├── src/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   └── App.js
+│
+└── README.md
+```
+
+---
+
+## 🧠 Technical Decisions
+
+* JWT instead of sessions → more scalable
+* PostgreSQL → real-world technology
+* Frontend/backend separation → professional architecture
+* Real deployment → practical experience
+
+---
+
+## 🚀 Running locally
 
 ### Backend
 
@@ -61,13 +183,41 @@ npm install
 npm start
 ```
 
-## 📈 Project Highlights
+---
 
-* Clean architecture (services, controllers, routes)
-* Secure user-based data handling
-* Real-world full-stack structure
-* Scalable and maintainable codebase
+## ⚠️ Environment Variables
 
-## 🎯 Status
+### Backend (.env)
 
-Completed & fully functional
+```env
+DATABASE_URL=...
+JWT_SECRET=...
+```
+
+### Frontend (.env)
+
+```env
+REACT_APP_API_URL=http://localhost:3000
+```
+
+---
+
+## 💡 Possible Improvements
+
+* UI with Tailwind / Material UI
+* Task filtering
+* Pagination
+* Refresh token
+* Dark mode 🌙
+
+---
+
+## 👨‍💻 Author
+
+Built by **Erick Nathan** 🚀
+
+---
+
+<p align="center">
+  ⭐ If you liked it, leave a star on the repository!
+</p>
