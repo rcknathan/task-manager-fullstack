@@ -83,7 +83,6 @@ password TEXT NOT NULL
 ```sql
 id SERIAL PRIMARY KEY
 title TEXT NOT NULL
-description TEXT
 completed BOOLEAN DEFAULT false
 user_id INTEGER REFERENCES users(id)
 ```
