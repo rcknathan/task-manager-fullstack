@@ -1,4 +1,4 @@
-const pool = require('..');
+const pool = require('../db');
 
 // Create task
 exports.createTask = async (req, res) => {
